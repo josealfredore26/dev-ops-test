@@ -10,7 +10,12 @@ pipeline {
     }
     stage('Install Dependencies') {
       steps {
-        sh 'pip install -r requirements.txt'
+        sh '''
+          export PATH=$PATH:/var/lib/jenkins/.local/bin
+          pip install -r requirements.txt
+          flake8 --version
+          pytest --version
+        '''
       }
     }
     stage('Lint') {
