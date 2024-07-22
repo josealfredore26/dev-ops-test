@@ -9,19 +9,22 @@ pipeline {
       }
     }
     stage('Install Dependencies') {
-      steps {
-        sh '''
-          export PATH=$PATH:/var/lib/jenkins/.local/bin
-          pip install -r requirements.txt
-          flake8 --version
-          pytest --version
-        '''
-      }
+        steps {
+            sh '''
+            python3 -m venv venv
+            source venv/bin/activate
+            pip install -r requirements.txt
+            '''
     }
+    }
+
     stage('Lint') {
-      steps {
-        sh 'flake8 main.py'
-      }
+        steps {
+            sh '''
+            source venv/bin/activate
+            flake8 main.py
+            '''
+        }
     }
     stage('Test') {
       steps {
