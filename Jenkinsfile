@@ -4,7 +4,8 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        git credentialsId: 'dev-test', url: 'https://github.com/josealfredore26/dev-ops-test.git'
+        // Especifica la rama aquí
+        git credentialsId: 'dev-test', url: 'https://github.com/josealfredore26/dev-ops-test.git', branch: 'main'
       }
     }
     stage('Install Dependencies') {
