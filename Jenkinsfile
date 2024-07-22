@@ -20,7 +20,7 @@ pipeline {
     }
     stage('Lint') {
       steps {
-        sh 'flake8 hello.py'
+        sh 'flake8 main.py'
       }
     }
     stage('Test') {
