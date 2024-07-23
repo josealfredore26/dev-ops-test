@@ -9,21 +9,19 @@ pipeline {
       }
     }
     stage('Install Dependencies') {
-        steps {
-            sh '''
-            python3 -m venv venv
-            source venv/bin/activate
-            pip install -r requirements.txt
-            '''
-    }
+      steps {
+        sh '''
+          python3 -m venv venv
+          . venv/bin/activate
+          pip install -r requirements.txt
+        '''
+      }
     }
 
     stage('Lint') {
         steps {
-            sh '''
-            source venv/bin/activate
-            flake8 main.py
-            '''
+            sh '. venv/bin/activate'
+            sh 'flake8 src'
         }
     }
     stage('Test') {
